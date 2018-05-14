@@ -8,6 +8,7 @@ import { Component } from '@angular/core'
         to the nearest public transports!</p>
     `
   })
+  
   export class VenueInfo {
     constructor(public viewCtrl: ViewController) {}
 

@@ -1,37 +1,16 @@
-page-globen {
+page-selectedVenue {
 
-.event {
+.stations {
+  align-self: center;
   font-size: 14px;
-  text-align: center;
-  color: #ff0000;
+  text-align: left;
+  color: #ffffff;
+  background-color: #353333;
+  border-left: 10px;
+
+  }
+.h3 {
+  font-size: 16px;
 
 }
-
-.informationText {
-  font-size: 12px;
-
-}
-
-.spacer {
-  width: auto;
-  height: 10px;
-
-}
-
-.item {
-  background:#998;
-  border-radius: 6px;
-  color: #000;
-  height: 70px;
-
-}
-.bulb {
-  color: #00ff00;
-
-}
-
-.person{
-  color: #ff0000;
-}
-
 }

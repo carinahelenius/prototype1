@@ -1,99 +1,42 @@
-  <ion-header>
-      <ion-navbar>
-        <ion-title>
-          <img src="/assets/icon/evide_h.ico" height="30px">
-        </ion-title>
-          <ion-buttons end>
-            <button (click)="openInfo($event)" ion-button large clear>
-              <ion-icon name="information-circle" style="zoom:1.8;">
-              </ion-icon>
-            </button>
-          </ion-buttons>
-      </ion-navbar>
- </ion-header>
-  <ion-content padding>
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        <!-- load selected venue name -->
+        GLOBEN
+      </ion-title>
+        <ion-buttons end>
+          <button (click)="openInfo($event)" ion-button large clear>
+            <ion-icon name="ios-information-circle-outline" style="zoom:1.8;">
+            </ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+<ion-grid>
+  <ion-row>
+    <ion-col align-self-center style="border:solid ;"> <!-- Bara att ändra border, hittade inga andra attribut nu-->
+      Info about ongoing event goes here
+    </ion-col>
+  </ion-row>
 
-      <div class="event"> Text goes here if there is an ongoing event at the venue </div>
-      <div style="height:5px;"> </div> <!-- mini spacer -->
-      <div class="informationText">
-      The people icons indicates how many people are taking that particular route.
-      The lightbulb indicates which color of lights you need to follow to get to that station.
-      </div>
-      <div class="spacer"></div>
-
-<!-- Här börjar Globen koden -->
-      <ion-item class="box" on-click="goToGlobenTunnelbana()">
-          <ion-avatar item-left>
-            <img src="/assets/imgs/bana.png"/>
-          </ion-avatar>
-          <ion-icon class="bulb" name="md-bulb" item-right></ion-icon>
-          <ion-icon class="person" name="md-walk" item-right><p>15 min</ion-icon>
-          <h2> Globen </h2>
-          <!-- <h3> Varningstriangel om stora störningar på stationen/i trafiken,
-          hämtas från SL API
-          <ion-icon name="warning"item-end color="danger">
-          <h3> -->
-    </ion-item>
-
-<!-- Här slutar Globen koden -->
-<div class="spacer"></div>
-
-<!-- Här börjar GUllmarsplankoden -->
-
- <ion-item on-click ="goToGullmarsplan()">
-      <ion-avatar item-left>
-        <img src="/assets/imgs/bana.png" />
-      </ion-avatar>
-
-      <ion-icon name="warning"item-end color="danger"></ion-icon>
-      <h2>
-        Gullmarsplan
-      </h2>
+</ion-grid> <!-- En "knapp" skapa ny för varje station-->
+    <div style="height:5px;"> </div> <!-- mini spacer -->
+    <div class="spacer"></div>
+    <ion-item class="stations">
+      <ion-grid>
+        <ion-row>
+          <ion-col align-self-stretch style="max-width:10px; background-color:#ff0000">  </ion-col>
+          <ion-col><ion-avatar item-left>
+            <img img src="/assets/imgs/bana.png" /> <!-- Byt till länk från db för stationens typ -->
+          </ion-avatar> </ion-col>
+          <ion-col item-left> <h3>Globen</h3> <p>  800 m </p> <!-- Byt till namn och avstånd hämtat från db--> </ion-col>
+          <ion-col> <ion-icon class="person" name="md-walk" item-right></ion-icon> <!-- byta till vår ikon -->
+          <p> 12 min<!-- Byt till tid hämtat från db--> </p>
+        </ion-col>
+        </ion-row>
+    </ion-grid>
 
     </ion-item>
-
-<!-- Här slutar Gullmarsplankoden-->
-<div class="spacer"></div>
-  <!-- Här börjar Blåsut koden -->
-
-  <ion-item color="none" on-click="goToBlasut()">
-      <ion-avatar item-left>
-        <img src="/assets/imgs/bana.png" />
-      </ion-avatar>
-
-      <h2>
-        Blåsut
-      </h2>
-    </ion-item>
-
-    <!-- Här slutar Blåsut koden -->
-<div class="spacer"></div>
-    <!-- Här börjar Skärmarbrink koden -->
-
-    <ion-item color="none" on-click="goToSkarmarbrink()" id="globen-list-item19">
-      <ion-avatar item-left>
-        <img src="/assets/imgs/bana.png" />
-      </ion-avatar>
-
-      <h2>
-        Skärmarbrink
-      </h2>
-    </ion-item>
-<!-- Här slutar Skärmarbrink koden -->
-<div class="spacer"></div>
-<!-- Här börjar test koden -->
-
-<ion-item ion-item *ngFor="let station of stations" color="none" on-click="goToSkarmarbrink()">
-
-    <ion-icon name="warning"item-right color="danger"></ion-icon>
-    <ion-avatar item-left>
-      <img img src="/assets/imgs/bana.png" />
-    </ion-avatar>
-    <ion-icon class="bulb" name="md-bulb" item-right></ion-icon>
-    <ion-icon class="person" name="md-walk" item-right><p>15 min</ion-icon>
-      <h2>
-      {{station.name}}
-      </h2>
-  </ion-item>
 
 </ion-content>

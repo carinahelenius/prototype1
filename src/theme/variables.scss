@@ -2,10 +2,14 @@
 // http://ionicframework.com/docs/theming/
 
 
-
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
+
+$font-family-ios-base:"Helvetica", "Arial";
+$font-family-md-base:"Helvetica", "Arial";
+$font-family-wp-base:"Helvetica", "Arial";
+
 
 
 // The app direction is used to include
@@ -35,12 +39,19 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #000000,
-  background:  #898989,
+  background:  #ffffff,
   yellow:     #fffd04,
-  light:      #f4f4f4,
-  dark:       #000,
+  light:      #afb7c2,
+  dark:       #353333,
   danger:     #ff0000
 );
+
+$toolbar-background: #afb7c2;
+$toolbar-text-color: #ffffff;
+$toolbar-ios-title-font-size: 25px;
+$toolbar-md-title-font-size: 25px;
+$toolbar-wp-title-font-size: 25px;
+
 
 
 // App iOS Variables

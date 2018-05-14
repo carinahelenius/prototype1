@@ -8,11 +8,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-     <img src="/assets/icon/evide_h.ico" height="30px">
+     <img src="/assets/icon/evide_h.png" height="30px">
     </ion-title>
     <ion-buttons end>
     <button (click)="openInfo($event)" ion-button large clear>
-    <ion-icon  name="information-circle" style="zoom:1.8;">
+    <ion-icon name="ios-information-circle-outline" style="zoom:1.8;">
     </ion-icon>
   </button>
 </ion-buttons>
@@ -29,10 +29,10 @@
 
     <ion-list><button (click)="goToPage()" ion-item *ngFor="let venue of venues">
       <ion-thumbnail item-start>
-      <!--  <img [src]="'/assets/imgs/' + venue.id + '.jpg'"> -->
-        <img [src]="venue.url">
+
+        <img [src]="venue.img_url">
       </ion-thumbnail>
-    <!--  {{ venue.name }}-->
-     {{ venue.title | uppercase }}
+    
+     {{ venue.name | uppercase }}
     </button></ion-list>
 </ion-content>

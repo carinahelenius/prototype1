@@ -1,35 +1,32 @@
 <ion-header>
 
   <ion-navbar>
-
-
+    <ion-title>
+    <!-- load selected station name -->
+    GLOBEN
+  </ion-title>
+  <ion-buttons end>
+    <button (click)="openInfo($event)" ion-button large clear>
+      <ion-icon name="ios-information-circle-outline" style="zoom:1.8;">
+      </ion-icon>
+    </button>
+  </ion-buttons>
   </ion-navbar>
 
 </ion-header>
-<ion-content>
-  <ion-list padding="true">
-  <!--  <div border="true" padding="true">-->
-  <ion-card padding ="true">
-    <p style="color:#0000ff; text-align: center"> <!--Vägvisning-->
-      <ion-icon name="bulb"></ion-icon>
-       &nbsp;
-        Look up and follow the blue lights!
-    </p>
-  </ion-card>
-  <!--/div-->
+<ion-content padding class ="bg"> <!--byta ut till färg på lamporna för den stationen-->
+<ion-item text-center class="title">
+  <ion-avatar>
+<img class="icon" img src="/assets/imgs/bana.png">  <!-- byta ut till dynamisk -->
+</ion-avatar>
+<h3 class="h3"> Globen </h3> <!-- byta ut till dynamisk -->
+ </ion-item>
 
-   <ion-card padding="true">
-    <p style="text-align: center"> <!--Tidsangivelse-->
-      <ion-icon name="walk"></ion-icon>
-       &nbsp;
-       Estimated time:
-      <b>15 min</b>
-    </p>
-  </ion-card>
-  <!--Karta-->
-  <div text-align:center padding="true">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d4074.8735329996207!2d18.082812528945446!3d59.292262405367964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x465f7826c8abcc0f%3A0x1d7a9835ba7d7f96!2sEricsson+Globe%2C+121+77+Stockholm!3m2!1d59.293572499999996!2d18.0835501!4m5!1s0x465f78252b07343f%3A0x6426232193c3165f!2sBl%C3%A5sut%2C+Stockholm!3m2!1d59.290243!2d18.091063!5e0!3m2!1ssv!2sse!4v1524907302769" width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-  </div>
-</ion-list>
+ <ion-item padding class="box">
+ importera tågtider från sl
+ <p> importera hur mkt människor på rutten</p>
+
+
+ </ion-item>
 
 </ion-content>
