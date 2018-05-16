@@ -21,7 +21,7 @@ export class ApiProvider {
     var response = this.http.get("https://pvt.dsv.su.se/Group9/venues");
       return response;
 }
-getEvents(str:string) {
+getStations(str:string) {
     let headers = new HttpHeaders();
   let other_headers = headers.append('Authorization', 'Bearer ' + this.jwt.makeToken(str));
     console.log("headers: ",JSON.stringify(headers));
@@ -29,13 +29,12 @@ getEvents(str:string) {
     return response;
 }
 
-
   obtainVenues(){
     return this.http.get('https://my-json-server.typicode.com/piiy/dbtest/posts')
   }
 
-  obtainTransport(){
-    return this.http.get('https://jsonplaceholder.typicode.com/users')
+  obtainStations(){
+    return this.http.get('https://my-json-server.typicode.com/piiy/testdb/posts')
   }
 
 }

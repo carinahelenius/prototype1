@@ -13,30 +13,33 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
+  <!-- for info about ongoing events, not neccesary for demo
 <ion-grid>
   <ion-row>
-    <ion-col align-self-center style="border:solid ;"> <!-- Bara att ändra border, hittade inga andra attribut nu-->
-      Info about ongoing event goes here
+    <ion-col align-self-center style="border:solid ;">
+      "Information about ongoing event"
     </ion-col>
   </ion-row>
+</ion-grid>
+-->
 
-</ion-grid> <!-- En "knapp" skapa ny för varje station-->
-    <div style="height:5px;"> </div> <!-- mini spacer -->
+
+<div style="height:5px;"> </div> <!-- mini spacer -->
     <div class="spacer"></div>
-    <ion-item class="stations">
+
+<!-- Lista av stationer -->
+    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute()" ion-item class="stations" *ngFor="let station of stations">
       <ion-grid>
         <ion-row>
-          <ion-col align-self-stretch style="max-width:10px; background-color:#ff0000">  </ion-col>
-          <ion-col><ion-avatar item-left>
-            <img img src="/assets/imgs/bana.png" /> <!-- Byt till länk från db för stationens typ -->
+          <ion-col align-self-stretch align-self-center style="max-width:10px; background-color:#ff0000;">  </ion-col><!-- Byt till färg för lamporna, från API/db.-->
+          <ion-col align-self-stretch style="width:10px"><ion-avatar item-left>
+            <img [src]="station.t_img_url"/> <!-- Byt till länk från db för stationens typ -->
           </ion-avatar> </ion-col>
-          <ion-col item-left> <h3>Globen</h3> <p>  800 m </p> <!-- Byt till namn och avstånd hämtat från db--> </ion-col>
-          <ion-col> <ion-icon class="person" name="md-walk" item-right></ion-icon> <!-- byta till vår ikon -->
+          <ion-col align-self-stretch item-left style="text-align:left"> <h4>{{station.name | uppercase}}</h4> <p>  800 m </p> <!-- Byt till namn och avstånd hämtat från db--> </ion-col>
+          <ion-col align-self-stretch> <ion-icon class="person" name="md-walk" item-right></ion-icon> <!-- byta till vår ikon, från db -->
           <p> 12 min<!-- Byt till tid hämtat från db--> </p>
         </ion-col>
         </ion-row>
     </ion-grid>
-
-    </ion-item>
-
+  </button></ion-list>
 </ion-content>

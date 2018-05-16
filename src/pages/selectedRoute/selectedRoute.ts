@@ -6,8 +6,6 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'selectedRoute.html'
 })
 
-//var bg-color:string "#ff0000";
-
 export class SelectedRoute {
 
   constructor(public navCtrl: NavController) {

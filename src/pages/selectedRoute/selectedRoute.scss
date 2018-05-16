@@ -3,22 +3,27 @@ page-selectedRoute {
 .title {
   align-items: center;
   align-content: center;
-
+  text-align: center;
+  font-size: 40px;
+  color: #ffffff;
 }
 .box {
   align-items: center;
   align-content: center;
-  border-width: thin;
-  border-color: #ffffff;
+  text-align: center;
+  color: #ffffff;
 
 }
+.timeTable {
+  align-self: center;
+  font-size: 14px;
+  text-align: left;
+  color: #ffffff;
+  background-color: #353333;
 
-$background-color: bg-color;
+  }
 
-.h3{
-  font-size: 20px;
 
-}
 
 
 }

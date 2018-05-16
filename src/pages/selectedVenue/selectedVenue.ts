@@ -20,7 +20,7 @@ export class SelectedVenue {
   this.klickedVenue = navParams.get("klickedVenue");
 if(this.klickedVenue == "Globen"){this.testLoader();}
 else{
-  this.ionLoadVenues(this.klickedVenue);}
+  this.ionLoadStations(this.klickedVenue);}
   }
 
   goToselectedRoute(params){
@@ -30,12 +30,12 @@ else{
   openInfo(myEvent) {   // Skapar en PopOver-sida när man trycker på "i"
     let popover = this.popoverCtrl.create(TravelInfo);
     popover.present({
-      ev: myEvent  // Skickar med klick-eventet så att rutan dyker upp
-    });            // där man klickar.
+      ev: myEvent
+    });
   }
 
-  ionLoadVenues(venue:string) { // Kommer att hämta olika arenor info från API
-    this.provider.getEvents(venue)
+  ionLoadStations(venue:string) { // Kommer att hämta olika stationer från API
+    this.provider.getStations(venue)
     .subscribe(
       (data)=> {
         this.stations=data["results"];
