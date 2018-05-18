@@ -21,10 +21,9 @@ export class VenueList {
   //  this.tabBarElement = document.querySelector('.tabbar');
 
   }
-  goToPage(venueTitle: string){
-    console.log(venueTitle);
+  goToPage(venueName: string){
     this.navCtrl.push(SelectedVenue, {
-klickedVenue: venueTitle,
+    venueName: venueName,
 
     })
   }

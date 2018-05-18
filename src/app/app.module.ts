@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
-import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { VenueList } from '../pages/venueList/venueList';
@@ -15,7 +14,7 @@ import { TravelInfo2 } from '../pages/travelInfo2/travelInfo2';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtMaker } from '../providers/Jwt-maker/jwt';
-
+import { DisturbanceInfo } from '../pages/disturbanceInfo/disturbanceInfo';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,8 @@ import { JwtMaker } from '../providers/Jwt-maker/jwt';
     SelectedVenue,
     VenueInfo,
     SelectedRoute,
-    TabsPage,
+    TravelInfo,
+    DisturbanceInfo
     TravelInfo,
     TravelInfo2
   ],
@@ -42,7 +42,8 @@ import { JwtMaker } from '../providers/Jwt-maker/jwt';
     SelectedRoute,
     SelectedVenue,
     VenueInfo,
-    TabsPage,
+    TravelInfo,
+    DisturbanceInfo
     TravelInfo,
     TravelInfo2
   ],

@@ -1,8 +1,8 @@
 <ion-header>
     <ion-navbar>
-      <ion-title>
+      <ion-title align="center">
         <!-- load selected venue name -->
-        GLOBEN
+        {{ venueName | uppercase }}
       </ion-title>
         <ion-buttons end>
           <button (click)="openInfo($event)" ion-button large clear>
@@ -13,6 +13,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
+
   <!-- for info about ongoing events, not neccesary for demo
 <ion-grid>
   <ion-row>
@@ -28,16 +29,16 @@
     <div class="spacer"></div>
 
 <!-- Lista av stationer -->
-    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute()" ion-item class="stations" *ngFor="let station of stations">
+    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute(station.e_name, station.SL_SITE_ID)" ion-item class="stations" *ngFor="let station of stations">
       <ion-grid>
         <ion-row>
           <ion-col align-self-stretch align-self-center style="max-width:10px; background-color:#ff0000;">  </ion-col><!-- Byt till färg för lamporna, från API/db.-->
           <ion-col align-self-stretch style="width:10px"><ion-avatar item-left>
-            <img [src]="station.t_img_url"/> <!-- Byt till länk från db för stationens typ -->
+            <img [src]="station.icon"/>
           </ion-avatar> </ion-col>
-          <ion-col align-self-stretch item-left style="text-align:left"> <h4>{{station.name | uppercase}}</h4> <p>  800 m </p> <!-- Byt till namn och avstånd hämtat från db--> </ion-col>
+          <ion-col align-self-stretch item-left style="text-align:left"> <h4>{{ station.e_name | uppercase }}</h4> <p>{{station.distance_in_meters}} m</p></ion-col>
           <ion-col align-self-stretch> <ion-icon class="person" name="md-walk" item-right></ion-icon> <!-- byta till vår ikon, från db -->
-          <p> 12 min<!-- Byt till tid hämtat från db--> </p>
+          <p> {{ station.time }}</p>
         </ion-col>
         </ion-row>
     </ion-grid>

@@ -29,6 +29,14 @@ getStations(str:string) {
     return response;
 }
 
+// Metod för att hämta både avgångar och störningsinfo. (Störningsinfo fanns i Realtidsinfo API:t också nämligen)
+
+getDepartures(siteId:string) {
+  var response = this.http.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=5393f7fca4684dbbb848a9eb35cf70c0&timewindow=15&Ship=false&Train=false&siteId=" + siteId)
+
+  return response;
+}
+
   obtainVenues(){
     return this.http.get('https://my-json-server.typicode.com/piiy/dbtest/posts')
   }
