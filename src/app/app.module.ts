@@ -25,7 +25,7 @@ import { DisturbanceInfo } from '../pages/disturbanceInfo/disturbanceInfo';
     VenueInfo,
     SelectedRoute,
     TravelInfo,
-    DisturbanceInfo
+    DisturbanceInfo,
     TravelInfo,
     TravelInfo2
   ],
@@ -43,7 +43,7 @@ import { DisturbanceInfo } from '../pages/disturbanceInfo/disturbanceInfo';
     SelectedVenue,
     VenueInfo,
     TravelInfo,
-    DisturbanceInfo
+    DisturbanceInfo,
     TravelInfo,
     TravelInfo2
   ],
