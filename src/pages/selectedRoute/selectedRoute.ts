@@ -14,10 +14,12 @@ export class SelectedRoute {
   departures;
   public routeName;
   public siteId;
+  public transport_type;
   
   constructor(public navCtrl: NavController, public provider: ApiProvider, public popoverCtrl: PopoverController, public navParams: NavParams) {
     this.routeName = navParams.get("routeName");
     this.siteId = navParams.get("siteId");
+    this.transport_type = navParams.get("transport_type");
     this.getDepartures(this.siteId);
   
   }
@@ -26,9 +28,15 @@ export class SelectedRoute {
 this.provider.getDepartures(siteId)
 .subscribe(
   (data) => {
-    
-    this.departures = data["ResponseData"].Metros;
-    console.log(this.departures);
+
+if(this.transport_type == '1') {
+  this.departures = data["ResponseData"].Metros;
+} else if(this.transport_type == '2') {
+  this.departures = data["ResponseData"].Trams;
+} else if(this.transport_type == '3') {
+  this.departures = data["ResponseData"].Buses;
+}
+
   },
   (error) => {console.log("Error: ", JSON.stringify(error));}
 )
