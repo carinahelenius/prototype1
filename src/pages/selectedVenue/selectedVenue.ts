@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, ViewController, PopoverController, NavParams } from 'ionic-angular';
-import { Info2Page } from '../info2/info2';
 import { TravelInfo } from '../travelInfo/travelInfo';
 import { ApiProvider } from '../../providers/api/api';
 import { SelectedRoute } from '../selectedRoute/selectedRoute';
