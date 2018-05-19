@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtMaker } from '../../providers/Jwt-maker/jwt';
@@ -22,12 +22,15 @@ export class ApiProvider {
       return response;
 }
 getStations(str:string) {
-    let headers = new HttpHeaders();
-  let other_headers = headers.append('Authorization', 'Bearer ' + this.jwt.makeToken(str));
-    console.log("headers: ",JSON.stringify(headers));
-  var response = this.http.get("https://pvt.dsv.su.se/Group9/api/v1/endpoints");
+  var response = this.http.get("https://pvt.dsv.su.se/Group9/api/v1/routes",{
+params: new HttpParams().set('user_value', str),
+      headers: new HttpHeaders().set('Authorization', 'Bearer '+this.jwt.makeToken(str))
+    })
+  console.log("resp: ", JSON.stringify(response));
     return response;
 }
+
+
 
 // Metod för att hämta både avgångar och störningsinfo. (Störningsinfo fanns i Realtidsinfo API:t också nämligen)
 

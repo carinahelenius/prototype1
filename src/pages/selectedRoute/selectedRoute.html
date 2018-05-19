@@ -14,8 +14,8 @@
 
 </ion-header>
 
-<ion-content padding class ="bg" style="background-color:#ff0000"> <!--byta ut till färg på lamporna för den stationen-->
-<ion-item no-lines class="title" style="background-color:#ff0000"><!--byta ut till färg på lamporna för den stationen-->
+<ion-content padding class ="bg" [style.background-color]="aColor"> <!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
+<ion-item no-lines text-center class="title" [style.background-color]="bColor"><!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
 <ion-grid>
   <ion-row>
     <ion-col width-25 style="text-align:right">
@@ -30,7 +30,7 @@
 </ion-grid>
 </ion-item>
 
-<!-- Knapp som öppnar popup med aktuella störningar för station/linje --> 
+<!-- Knapp som öppnar popup med aktuella störningar för station/linje -->
 <div text-center>
 <button (click)="openDisturbanceInfo($event, siteId)" class="button" text-center ion-button color="yellow" round icon-start>
     <ion-icon name='alert' is-active="false"></ion-icon>
@@ -39,17 +39,17 @@
 </div>
 
 
- <ion-item no-lines *ngFor="let departure of departures" text-wrap style="background-color:#ff0000" > <!--byta ut till färg på lamporna för den stationen-->
+ <ion-item no-lines *ngFor="let departure of departures" [style.background-color]="bColor"> <!--byta ut till färg på lamporna för den stationen-->
    <ion-grid class="timeTable">
        <ion-row>
        <ion-col>
-         <b>{{ departure.LineNumber }}</b> - {{ departure.Destination }} - <b>{{ departure.DisplayTime }}</b> 
+         <b>{{ departure.LineNumber }}</b> - {{ departure.Destination }} - <b>{{ departure.DisplayTime }}</b>
        </ion-col>
      </ion-row>
    </ion-grid>
    </ion-item>
 
-  <ion-item no-lines text-center padding style="background-color:#ff0000">
+  <ion-item no-lines text-center padding [style.background-color]="bColor">
   <!-- temporary map, change for working api map. -->
 <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d1018.6640611651493!2d18.07965259169384!3d59.29407701343946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e2!4m5!1s0x465f782724601cbb%3A0x1429aa009c144757!2sGloben%2C+Johanneshov!3m2!1d59.2942798!2d18.077974299999997!4m3!3m2!1d59.2932315!2d18.0818411!5e0!3m2!1ssv!2sse!4v1526392219581"
 width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
