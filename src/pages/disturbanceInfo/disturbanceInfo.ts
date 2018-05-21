@@ -6,8 +6,8 @@ import { ApiProvider } from '../../providers/api/api';
     template: `
      <ion-list-header align="center"><b>DISTURBANCE INFO</b></ion-list-header>
        <p *ngFor="let deviation of deviations" align="center">
-        - {{ deviation.Deviation.Text }}
-       </p>
+       {{deviation.Deviation.Text}}
+     </p>
     `
   })
   

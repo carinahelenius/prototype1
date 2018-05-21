@@ -38,8 +38,8 @@
   </button>
 </div>
 
-
- <ion-item no-lines *ngFor="let departure of departures" [style.background-color]="bColor"> <!--byta ut till färg på lamporna för den stationen-->
+<div *ngFor="let departure of departures; let i=index">
+ <ion-item no-lines *ngIf="i<3" [style.background-color]="bColor"> <!--byta ut till färg på lamporna för den stationen-->
    <ion-grid class="timeTable">
        <ion-row>
        <ion-col>
@@ -48,6 +48,7 @@
      </ion-row>
    </ion-grid>
    </ion-item>
+   </div>
 
   <ion-item no-lines text-center padding [style.background-color]="bColor">
   <!-- temporary map, change for working api map. -->
