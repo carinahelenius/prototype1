@@ -2,7 +2,7 @@
     <ion-navbar>
       <ion-title align="center">
         <!-- load selected venue name -->
-        {{ venueName | uppercase }}
+        {{ venueName }}
       </ion-title>
         <ion-buttons end>
           <button (click)="openInfo($event)" ion-button large clear>
@@ -14,6 +14,8 @@
 </ion-header>
 <ion-content padding>
 
+
+ <!-- <div text-center><button ion-button color="dark" (click)="openInAppBrowser()">In App Browser test</button></div> -->
   <!-- for info about ongoing events, not neccesary for demo
 <ion-grid>
   <ion-row>
@@ -23,7 +25,6 @@
   </ion-row>
 </ion-grid>
 -->
-
 
 <div style="height:5px;"> </div> <!-- mini spacer -->
     <div class="spacer"></div>
@@ -37,7 +38,7 @@
             <img [src]="station.icon"/>
           </ion-avatar> </ion-col>
           <ion-col align-self-stretch item-left style="text-align:left"> <h4>{{ station.e_name | uppercase }}</h4> <p>{{station.distance_in_meters}} m</p></ion-col>
-          <ion-col align-self-stretch> <ion-icon class="person" name="md-walk" item-right></ion-icon> <!-- byta till vår ikon, från db -->
+          <ion-col align-self-stretch> <img width="30px" height="22px" [src]="station.crowd_indicator"/> <!-- byta till vår ikon, från db -->
           <p> {{ station.time }}</p>
         </ion-col>
         </ion-row>

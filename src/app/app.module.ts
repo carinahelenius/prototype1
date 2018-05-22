@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtMaker } from '../providers/Jwt-maker/jwt';
 import { DisturbanceInfo } from '../pages/disturbanceInfo/disturbanceInfo';
 import { Geolocation } from '@ionic-native/geolocation';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
     Geolocation,
-    JwtMaker
+    JwtMaker,
+    InAppBrowser
   ]
 })
 export class AppModule {}
