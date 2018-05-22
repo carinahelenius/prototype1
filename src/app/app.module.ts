@@ -15,6 +15,7 @@ import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtMaker } from '../providers/Jwt-maker/jwt';
 import { DisturbanceInfo } from '../pages/disturbanceInfo/disturbanceInfo';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { DisturbanceInfo } from '../pages/disturbanceInfo/disturbanceInfo';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
+    Geolocation,
     JwtMaker
   ]
 })
