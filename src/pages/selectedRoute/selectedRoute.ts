@@ -16,8 +16,7 @@ declare var google;
 export class SelectedRoute {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  private route;
-private routeId;
+private venueAddress;
   private venueId;
   public transport_type;
   departures;
@@ -30,33 +29,26 @@ private routeId;
   stationInformation;
   stationTypeString;
   public venueName;
-  private venueAddress;
-  private color;
-
+private colors;
   constructor(public navCtrl: NavController, public provider: ApiProvider, public popoverCtrl: PopoverController, public navParams: NavParams, public geo: Geolocation, public inAppBrowser: InAppBrowser) {
     this.routeName = navParams.get("routeName");
-    this.color = navParams.get("color_hex");
-    this.bColor=this.color;
-    this.aColor=this.color;
-    this.routeId = navParams.get("routeId");
-    this.getRouteInformation(this.routeId);
+    this.venueAddress = navParams.get("venueAddress");
     this.siteId = navParams.get("siteId");
     this.transport_type = navParams.get("transport_type");
     this.venueId = navParams.get("venueId");
     this.venueName = navParams.get("venueName");
-    this.venueAddress = navParams.get("venueAddress");
     this.icon = navParams.get("icon");
-
-
+    this.stationTypeString = navParams.get("stationType");
+this.aColor = navParams.get("colors");
+this.bColor=this.aColor;
     this.getDepartures(this.siteId);
     setInterval(() => {
       console.log('timer');
       this.getDepartures(this.siteId);
     },60000);
-this.destinationString = this.routeName+", "+ this.transport_type;
-
-this.getRouteInformation(this.routeId);
-
+  
+this.destinationString = this.routeName+", "+ this.stationTypeString;
+console.log("destinationString: ", this.destinationString);
   }
 
   ionViewDidLoad(){
@@ -64,7 +56,8 @@ this.getRouteInformation(this.routeId);
   }
 
   openTicketPage() {
-const options: InAppBrowserOptions = {
+
+    const options: InAppBrowserOptions = {
       toolbar: 'yes',
       footer: 'yes',
     }
@@ -170,18 +163,5 @@ alert("There is a problem with loading the departures at this time, please try a
 }
 
 
-getRouteInformation(venue:string) { // Kommer att hÃ¤mta olika stationer frÃ¥n API
-  this.provider.getRoute(venue)
-  .subscribe(
-    (data)=> {
-      this.route=data["results"];
-      console.log("getRoute:", JSON.stringify(data["results"]));
-    },
-    (error)=> {console.log("error: ", JSON.stringify(error));}
-  )
-}
-loadSelectedRoute(route){
-
-}
 
 }

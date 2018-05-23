@@ -18,7 +18,7 @@
   <div text-center><button ion-button color="dark" (click)="openBrowserPage('eventPage')">LINK TO EVENT PAGE</button></div>
   <div text-center><button ion-button color="dark" (click)="openBrowserPage('restaurantPage')">LINK TO RESTAURANTS AND BARS</button></div>
   <div text-center><button ion-button color="dark" (click)="openBrowserPage('overviewPage')">LINK TO VENUE OVERVIEW</button></div>
-
+  
   <!-- for info about ongoing events, not neccesary for demo
 <ion-grid>
   <ion-row>
@@ -33,7 +33,7 @@
     <div class="spacer"></div>
 
 <!-- Lista av stationer -->
-    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute(station.e_name, station.SL_SITE_ID, station.t_name, station.icon, station.route_id, station.color_hex)" ion-item class="stations" *ngFor="let station of stations">
+    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute(station.e_name, station.SL_SITE_ID, station.transport_type, station.icon, station.t_name, station.color_hex)" ion-item class="stations" *ngFor="let station of stations">
       <ion-grid>
         <ion-row>
           <ion-col align-self-stretch align-self-center style="max-width:10px; background-color:#ff0000;" [style.background-color]="station.color_hex" >    </ion-col><!-- Byt till färg för lamporna, från API/db.-->

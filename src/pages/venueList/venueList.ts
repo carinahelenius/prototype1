@@ -25,7 +25,8 @@ export class VenueList {
     this.navCtrl.push(SelectedVenue, {
     venueName: venueName,
     venueId:venue,
-venueAddress: address
+    venueAddress: address
+
     })
   }
 
@@ -48,7 +49,7 @@ venueAddress: address
       }, 4000);
     }
 
-
+ 
 
   getVenues(ev) {
     this.venues=this.downloadedVenues;  // Återställer lista till alla arenor
