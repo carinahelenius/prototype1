@@ -37,7 +37,7 @@ console.log("VenueUrl: ", this.venueView);
     }
 
     if(id == 'eventPage') {
-      this.inAppBrowser.create(eventUrl, '_system', options);
+      this.inAppBrowser.create(eventUrl, '_self', options);
 
     } else if(id == 'restaurantPage') {
       this.inAppBrowser.create(restaurantUrl, '_system', options);
