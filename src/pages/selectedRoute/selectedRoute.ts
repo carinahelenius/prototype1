@@ -46,7 +46,7 @@ this.bColor=this.aColor;
       console.log('timer');
       this.getDepartures(this.siteId);
     },60000);
-  
+
 this.destinationString = this.routeName+", "+ this.stationTypeString;
 console.log("destinationString: ", this.destinationString);
   }
@@ -69,7 +69,11 @@ console.log("destinationString: ", this.destinationString);
   calculateAndDisplayRoute() {
     let that = this;
     let directionsService = new google.maps.DirectionsService;
-    let directionsDisplay = new google.maps.DirectionsRenderer;
+    let directionsDisplay = new google.maps.DirectionsRenderer({
+     polylineOptions: {
+       strokeColor: this.aColor,
+     }
+   });
     const map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
     });
