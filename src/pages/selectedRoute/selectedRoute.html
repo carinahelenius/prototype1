@@ -29,8 +29,12 @@
 <div text-center>
 <button (click)="openDisturbanceInfo($event, siteId)" class="button" text-center ion-button color="yellow" round icon-start>
     <ion-icon name='alert' is-active="false"></ion-icon>
-    <b>Disturbances</b>
+  Disturbances
   </button>
+
+  <button (click)="openTicketPage()"class="button" text-center ion-button color="light" round icon-start>
+      Buy SL ticket
+    </button>
 </div>
 
 <div *ngFor="let departure of departures; let i=index">
