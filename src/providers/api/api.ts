@@ -30,6 +30,14 @@ params: new HttpParams().set('user_value', str),
   console.log("resp: ", JSON.stringify(response));
     return response;
 }
+getEvents(str:string) {
+  var response = this.http.get("https://pvt.dsv.su.se/Group9/api/v1/venueHasEvent",{
+params: new HttpParams().set('user_value', str),
+      headers: new HttpHeaders().set('Authorization', 'Bearer '+this.jwt.makeToken(str))
+    })
+  console.log("resp: ", JSON.stringify(response));
+    return response;
+}
 
 getDepartures(siteId:string) {
   var response = this.http.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=7df6053ebb6048dd8a125ac80c38d1fe&timewindow=15&Ship=false&siteId=" + siteId)

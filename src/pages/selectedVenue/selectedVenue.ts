@@ -11,6 +11,9 @@ import { InAppBrowser, InAppBrowserOptions, InAppBrowserObject } from '@ionic-na
   templateUrl: 'selectedVenue.html'
 })
 export class SelectedVenue {
+  eventUrl;
+  timeEl;
+  eventLink;
   stations;
   public venueName;
   public venueId;
@@ -22,12 +25,13 @@ private venueView;
   this.venueAddress = navParams.get("venueAddress");
   this.venueView = navParams.get("venueView");
   this.ionLoadStations(this.venueId);
+  this.loadEvents();
 console.log("VenueUrl: ", this.venueView);
   }
 
   openBrowserPage(id) {
 
-    const eventUrl = 'https://www.stockholmlive.com/evenemang/alla-evenemang'; // Byt ut till db_event/event_url
+    const eventUrl = this.eventUrl; // Byt ut till db_event/event_url
     const restaurantUrl = 'https://www.google.com/maps/search/' + this.venueName + '+Restaurants+Bars';
     const overviewUrl = this.venueView; // Byt ut till db_venue_arenaview_url
 
@@ -47,7 +51,7 @@ console.log("VenueUrl: ", this.venueView);
     }
 
   }
- goToselectedRoute(routeName:string, siteId:string, tType, icon, sType, colors_hex){
+ goToselectedRoute(routeName:string, siteId:string, tType, icon, sType, colorHex, colorString){
     this.navCtrl.push(SelectedRoute, {
       routeName: routeName,
       siteId: siteId,
@@ -57,7 +61,8 @@ console.log("VenueUrl: ", this.venueView);
       icon: icon,
       venueAddress: this.venueAddress,
       stationType: sType,
-      colors: colors_hex
+      color_hex: colorHex,
+      color: colorString
     });
   }
 
@@ -76,6 +81,39 @@ console.log("VenueUrl: ", this.venueView);
         console.log("SpecificVenue: ", JSON.stringify(this.stations));
       },
       (error)=> {console.log("error: ", JSON.stringify(error));}
+    )
+  }
+  loadEvents() { // Kommer att hämta olika stationer från API
+    this.provider.getEvents(this.venueId)
+    .subscribe(
+      (data)=> {
+        let events = data["results"];
+
+        var count = Object.keys(events).length;
+        if(count==0){
+        console.log("<1");
+          this.eventLink="There is no event today at " + this.venueName}
+        else{
+        this.eventUrl = events[0].event_url;
+          this.eventLink=events[0].name;
+          let date = new Date(events[0].start_time);
+
+          let hours: string|number = date.getHours();
+          let minutes: string|number = date.getMinutes();
+          
+          if(hours<10){hours="0"+hours;}
+          if(minutes<10){minutes = minutes+"0";}
+          this.timeEl=hours+":"+minutes;
+
+
+          this.eventLink = "Today the event " + events[0].name + " will be at kl "+this.timeEl+" at "+this.venueName;
+          document.getElementById("myHeader").innerHTML = this.eventLink;
+          console.log("timeEl:", this.timeEl);
+          console.log("event: ",events[0].name);
+      }
+        console.log("EventList: ", JSON.stringify(data));
+      },
+      (error)=> {console.log("eventListError: ", JSON.stringify(error));}
     )
   }
 }

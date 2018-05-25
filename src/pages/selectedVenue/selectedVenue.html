@@ -4,7 +4,9 @@
         <!-- load selected venue name -->
         {{ venueName }}
       </ion-title>
-      
+
+
+
       <!-- <ion-buttons end>
           <button (click)="openInfo($event)" ion-button large clear>
             <ion-icon name="ios-information-circle-outline" style="zoom:1.8;">
@@ -13,6 +15,7 @@
         </ion-buttons> -->
     </ion-navbar>
 </ion-header>
+
 <ion-fab edge right>
     <button ion-fab color="buttonColor" mini><ion-icon name="more"></ion-icon></button>
     <ion-fab-list>
@@ -21,24 +24,24 @@
       <button ion-fab (click)="openBrowserPage('restaurantPage')"><ion-icon name="ios-restaurant"></ion-icon></button>
       <button ion-fab (click)="openBrowserPage('overviewPage')"><ion-icon name="image"></ion-icon></button>
     </ion-fab-list>
-  </ion-fab> 
+  </ion-fab>
 <ion-content padding>
- 
-  <!-- for info about ongoing events, not neccesary for demo
+
+<div text-center>
 <ion-grid>
   <ion-row>
     <ion-col align-self-center style="border:solid ;">
-      "Information about ongoing event"
+      <h1 id="myHeader">There is no event today at {{venueName}} </h1>
     </ion-col>
   </ion-row>
 </ion-grid>
--->
+</div>
 
 <div style="height:5px;"> </div> <!-- mini spacer -->
     <div class="spacer"></div>
 
 <!-- Lista av stationer -->
-    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute(station.e_name, station.SL_SITE_ID, station.transport_type, station.icon, station.t_name, station.color_hex)" ion-item class="stations" *ngFor="let station of stations">
+    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute(station.e_name, station.SL_SITE_ID, station.transport_type, station.icon, station.t_name, station.color_hex, station.color)" ion-item class="stations" *ngFor="let station of stations">
       <ion-grid>
         <ion-row>
           <ion-col align-self-stretch align-self-center style="max-width:10px; background-color:#ff0000;" [style.background-color]="station.color_hex" >    </ion-col><!-- Byt till färg för lamporna, från API/db.-->

@@ -16,6 +16,7 @@ declare var google;
 export class SelectedRoute {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  private color;
 private venueAddress;
   private venueId;
   public transport_type;
@@ -29,7 +30,7 @@ private venueAddress;
   stationInformation;
   stationTypeString;
   public venueName;
-private colors;
+private color_hex;
   constructor(public navCtrl: NavController, public provider: ApiProvider, public popoverCtrl: PopoverController, public navParams: NavParams, public geo: Geolocation, public inAppBrowser: InAppBrowser) {
     this.routeName = navParams.get("routeName");
     this.venueAddress = navParams.get("venueAddress");
@@ -39,8 +40,9 @@ private colors;
     this.venueName = navParams.get("venueName");
     this.icon = navParams.get("icon");
     this.stationTypeString = navParams.get("stationType");
-this.aColor = navParams.get("colors");
+this.aColor = navParams.get("color_hex");
 this.bColor=this.aColor;
+this.color = navParams.get("color");
     this.getDepartures(this.siteId);
     setInterval(() => {
       console.log('timer');

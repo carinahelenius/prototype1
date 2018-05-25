@@ -14,21 +14,28 @@
 
 </ion-header>
 
-
-<ion-content padding class ="bg" [style.background-color]="aColor"> <!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
-<ion-item no-lines text-center class="title" [style.background-color]="bColor"><!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
+<ion-content padding class ="bg" [style.background-color]="white"> <!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
+<ion-item no-lines text-center class="title" color="white"><!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
   <ion-avatar item-left>
 <img class="icon" img [src]="icon"/>
 </ion-avatar>
   {{ routeName }}
 </ion-item>
 
+ <div text-center>
+   <button class="lightButton" ion-button round icon-start>
+    <ion-icon name='sunny' outline is-active="false" [style.color]="aColor"></ion-icon>
+    follow the {{color}} light
+  </button>
+  </div>
+
+
 <!-- GoogleMaps karta -->
 <div #map id="map"></div>
 <!-- Knapp som öppnar popup med aktuella störningar för station/linje -->
 <div text-center>
 <button (click)="openDisturbanceInfo($event, siteId)" class="button" text-center ion-button color="yellow" round icon-start>
-    <ion-icon name='alert' is-active="false"></ion-icon>
+    <ion-icon name='alert' is-active="false" ></ion-icon>
   Disturbances
   </button>
 
@@ -38,7 +45,7 @@
 </div>
 
 <div *ngFor="let departure of departures; let i=index">
- <ion-item no-lines *ngIf="i<3" [style.background-color]="bColor"> <!--byta ut till färg på lamporna för den stationen-->
+ <ion-item no-lines *ngIf="i<3" [style.background-color]="white"> <!--byta ut till färg på lamporna för den stationen-->
    <ion-grid class="timeTable">
        <ion-row>
        <ion-col>
@@ -49,6 +56,6 @@
    </ion-item>
    </div>
 
-  <ion-item no-lines text-center padding [style.background-color]="bColor">
+  <ion-item no-lines text-center padding [style.background-color]="white">
 </ion-item>
 </ion-content>

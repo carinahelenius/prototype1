@@ -10,7 +10,7 @@ page-selectedRoute {
   align-content: center;
   text-align: center;
   font-size: 30px;
-  color: #ffffff;
+  color:black;
 }
 .box {
   align-items: center;
@@ -27,13 +27,22 @@ page-selectedRoute {
   background-color: #353333;
 
   }
-
- 
-
   .button{
     font-size: 12px;
   }
-
+  .lightButton {
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    font-size: 17px;
+    background-color:white;
+    color: black;
+    pointer-events: none;
+    box-shadow: none;
+    border-color:rgba(0,0,0,0) ;
+    outline: none;
+  }
 
 
 
