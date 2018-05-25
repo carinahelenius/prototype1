@@ -10,7 +10,6 @@ import { SelectedVenue } from '../pages/selectedVenue/selectedVenue';
 import { VenueInfo } from '../pages/venueInfo/venueInfo';
 import { SelectedRoute } from '../pages/selectedRoute/selectedRoute';
 import { TravelInfo } from '../pages/travelInfo/travelInfo';
-import { TravelInfo2 } from '../pages/travelInfo2/travelInfo2';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtMaker } from '../providers/Jwt-maker/jwt';
@@ -29,7 +28,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     TravelInfo,
     DisturbanceInfo,
     TravelInfo,
-    TravelInfo2
   ],
   imports: [
     BrowserModule,
@@ -47,7 +45,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     TravelInfo,
     DisturbanceInfo,
     TravelInfo,
-    TravelInfo2
   ],
   providers: [
     StatusBar,
