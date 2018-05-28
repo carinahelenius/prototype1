@@ -15,6 +15,8 @@ declare var google;
 export class SelectedRoute {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  routeId;
+  private stations;
   private color;
 private venueAddress;
   private venueId;
@@ -34,6 +36,7 @@ private venueAddress;
 private color_hex;
   constructor(public navCtrl: NavController, public provider: ApiProvider, public popoverCtrl: PopoverController, public navParams: NavParams, public geo: Geolocation, public inAppBrowser: InAppBrowser) {
     this.routeName = navParams.get("routeName");
+    this.routeId = navParams.get("routeId");
     this.venueAddress = navParams.get("venueAddress");
     this.siteId = navParams.get("siteId");
     this.transport_type = navParams.get("transport_type");
@@ -48,12 +51,16 @@ this.bColor=this.aColor;
 this.color = navParams.get("color");
     this.getDepartures(this.siteId);
     setInterval(() => {
-      console.log('timer');
+    //  console.log('timer');
       this.getDepartures(this.siteId);
     },60000);
+    setInterval(() => {
+    //  console.log('timer');
+      this.ionLoadStations(this.venueId);
+    },5000);
 
 this.destinationString = this.routeName+", "+ this.stationTypeString;
-console.log("destinationString: ", this.destinationString);
+//console.log("destinationString: ", this.destinationString);
   }
 
   ionViewDidLoad(){
@@ -117,7 +124,7 @@ console.log("destinationString: ", this.destinationString);
   }
 
   getDepartures(siteId:string) {
-    console.log("Uppdaterar");
+    //console.log("Uppdaterar");
     this.provider.getDepartures(siteId)
 .subscribe(
  (data) => {
@@ -157,15 +164,30 @@ alert("There is a problem with loading the departures at this time, please try a
     let xFactor;
     if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1525786167/sensor-green.png' ) {
       xFactor = 1;
-    } else if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1527068926/sensor-yellow.png'){ 
+    } else if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1527068926/sensor-yellow.png'){
       xFactor = 2;
-    } else{ 
+    } else{
       xFactor = 3;
     }
     let result = newTime * xFactor;
     return result;
   }
-
+  ionLoadStations(venue:string) { // Kommer att hämta olika stationer från API
+    this.provider.getStations(venue)
+    .subscribe(
+      (data)=> {
+        this.stations=data["results"];
+        this.updateRoutInfo();
+      },
+      (error)=> {console.log("error: ", JSON.stringify(error));}
+    )
+  }
+updateRoutInfo(){
+let shownRoute = this.stations.find(item => item.route_id===this.routeId);
+console.log("item: ", JSON.stringify(shownRoute));
+this.crowdIndicator=shownRoute.crowd_indicator;
+this.time=shownRoute.time;
+}
 
   openDisturbanceInfo(myEvent) { // Skapar popup-sida med störningsinfo.
 
