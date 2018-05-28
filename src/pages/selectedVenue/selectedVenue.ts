@@ -54,7 +54,7 @@ console.log("VenueUrl: ", this.venueView);
     }
 
   }
- goToselectedRoute(routeName:string, siteId:string, tType, icon, sType, colorHex, colorString, crowd_indicator, time){
+ goToselectedRoute(routeName:string, siteId:string, tType, icon, sType, colorHex, colorString, crowd_indicator, time, route){
     this.navCtrl.push(SelectedRoute, {
       routeName: routeName,
       siteId: siteId,
@@ -68,6 +68,7 @@ console.log("VenueUrl: ", this.venueView);
       color: colorString,
       crowdIndicator: crowd_indicator,
       time: time,
+      routeId: route,
     });
   }
 
@@ -83,7 +84,7 @@ console.log("VenueUrl: ", this.venueView);
     .subscribe(
       (data)=> {
         this.stations=data["results"];
-        console.log("SpecificVenue: ", JSON.stringify(this.stations));
+      //  console.log("SpecificVenue: ", JSON.stringify(this.stations));
       },
       (error)=> {console.log("error: ", JSON.stringify(error));}
     )
@@ -93,14 +94,14 @@ console.log("VenueUrl: ", this.venueView);
     .subscribe(
       (data)=> {
         let events = data["results"];
-        
+
         this.eventUrl = events[0].event_url;
         this.eventName = events[0].name;
-       
+
           let date = new Date(events[0].start_time);
           let hours: string|number = date.getHours();
           let minutes: string|number = date.getMinutes();
-          
+
           if(hours<10){hours="0"+hours;}
           if(minutes<10){minutes = minutes+"0";}
           this.eventTime = hours+":"+minutes;
@@ -114,9 +115,9 @@ console.log("VenueUrl: ", this.venueView);
     let xFactor;
     if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1525786167/sensor-green.png' ) {
       xFactor = 1;
-    } else if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1527068926/sensor-yellow.png'){ 
+    } else if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1527068926/sensor-yellow.png'){
       xFactor = 2;
-    } else{ 
+    } else{
       xFactor = 3;
     }
     let result = newTime * xFactor;
