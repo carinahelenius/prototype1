@@ -1,31 +1,30 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-    <!-- load selected station name -->
-    {{ routeName }}
+    <ion-title text-center>
+  <h2> {{ routeName }} </h2>
   </ion-title>
-  
   </ion-navbar>
-
 </ion-header>
 
-<ion-content padding class ="bg"> <!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
-<ion-item no-lines text-center class="title" color="white"><!--byta ut till fÃ¤rg pÃ¥ lamporna fÃ¶r den stationen-->
-  <ion-avatar item-left>
+<ion-content padding class ="bg"> 
+<ion-item no-lines text-center class="titles" color="white">
+  <ion-avatar item-left style="margin-left: 15px">
 <img class="icon" img [src]="icon"/>
 </ion-avatar>
-  {{ routeName }}
+ <div style="margin-left: -15px"> {{ routeName }} </div>
 </ion-item>
+  
+  <p text-center><b style="margin-right: 6px">Crowd on route: </b> <img style="margin-right: 20px" style="margin-bottom: -6px" width="30px" height="22px" [src]="crowdIndicator"/>
+  <p text-center><b>Estimated time: {{calculateRouteTime(time, crowdIndicator)}} min</b></p>
+  <div text-center>
+      <ion-item no-lines class="lightButton">
+       <ion-icon name='sunny' outline is-active="false" [style.color]="aColor"></ion-icon>
+       Follow the {{color}} lights!
+      </ion-item>
+     </div>
+    
 
- <div text-center>
-   <button class="lightButton" ion-button round icon-start>
-    <ion-icon name='sunny' outline is-active="false" [style.color]="aColor"></ion-icon>
-    FOLLOW THE {{color | uppercase}} LIGHTS
-  </button>
-  </div>
 
-
-  <div text-center><img width="30px" height="22px" [src]="crowdIndicator"/> {{time}}</div>
 
 <!-- GoogleMaps karta -->
 <div #map id="map" padding class="bg"></div>

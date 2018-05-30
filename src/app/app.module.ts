@@ -44,7 +44,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     VenueInfo,
     TravelInfo,
     DisturbanceInfo,
-    TravelInfo,
   ],
   providers: [
     StatusBar,
@@ -56,4 +55,5 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     InAppBrowser
   ]
 })
+
 export class AppModule {}

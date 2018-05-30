@@ -2,12 +2,12 @@
     <ion-navbar>
       <ion-title align="center">
         <!-- load selected venue name -->
-        {{ venueName }}
+       <h2> {{ venueName }} </h2>
       </ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-fab edge right>
+<ion-fab edge right style="margin-top: 8px">
     <button ion-fab color="buttonColor" mini><ion-icon name="more"></ion-icon></button>
     <ion-fab-list>
       <button ion-fab (click)="openInfo($event)" ><ion-icon name="information-circle"></ion-icon></button>
@@ -18,21 +18,20 @@
   </ion-fab>
 <ion-content padding>
 
-<div text-center>
-<ion-grid>
-  <ion-row>
-    <ion-col align-self-center style="border:solid ;">
-      <h1 id="myHeader">There is no event today at {{venueName}} </h1>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-</div>
+
+<ion-card>
+  <ion-card-header text-center>
+    <h2><b>Today at {{ venueName }}</b></h2>
+  </ion-card-header>
+  <p text-center> <ion-icon name='calendar' style="font-size: 16px" style="margin-right: 3px"> </ion-icon> {{ eventName }}</p>
+  <p text-center style="margin-top: 5px" style="margin-bottom: 10px"> <ion-icon name='time' style="font-size: 16px" style="margin-right: 3px"> </ion-icon>  {{ eventTime }} </p>
+</ion-card>
 
 <div style="height:5px;"> </div> <!-- mini spacer -->
     <div class="spacer"></div>
 
 <!-- Lista av stationer -->
-    <ion-list><button class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute(station.e_name, station.SL_SITE_ID, station.transport_type, station.icon, station.t_name, station.color_hex, station.color, station.crowd_indicator, station.time)" ion-item class="stations" *ngFor="let station of stations">
+    <ion-list><button detail-none class="stations" style="margin-bottom: 20px" (click)="goToselectedRoute(station.e_name, station.SL_SITE_ID, station.transport_type, station.icon, station.t_name, station.color_hex, station.color, station.crowd_indicator, station.time, station.route_id)" ion-item class="stations" *ngFor="let station of stations">
       <ion-grid>
         <ion-row>
           <ion-col align-self-stretch align-self-center style="max-width:10px; background-color:#ff0000;" [style.background-color]="station.color_hex" >    </ion-col><!-- Byt till färg för lamporna, från API/db.-->
@@ -41,7 +40,7 @@
           </ion-avatar> </ion-col>
           <ion-col align-self-stretch item-left style="text-align:left"> <h4>{{ station.e_name | uppercase }}</h4> <p>{{station.distance_in_meters}} m</p></ion-col>
           <ion-col align-self-stretch> <img width="30px" height="22px" [src]="station.crowd_indicator"/> <!-- byta till vår ikon, från db -->
-          <p> {{ station.time }}</p>
+          <p> {{calculateRouteTime(station.time, station.crowd_indicator)}} min</p>
         </ion-col>
         </ion-row>
     </ion-grid>

@@ -5,15 +5,14 @@ import { ApiProvider } from '../../providers/api/api';
 import { SelectedRoute } from '../selectedRoute/selectedRoute';
 import { InAppBrowser, InAppBrowserOptions, InAppBrowserObject } from '@ionic-native/in-app-browser';
 
-
 @Component({
   selector: 'page-selectedVenue',
   templateUrl: 'selectedVenue.html'
 })
 export class SelectedVenue {
   eventUrl;
-  timeEl;
-  eventLink;
+  eventTime;
+  eventName;
   stations;
   public venueName;
   public venueId;
@@ -45,7 +44,7 @@ console.log("VenueUrl: ", this.venueView);
     }
 
     if(id == 'eventPage') {
-      this.inAppBrowser.create(eventUrl, '_self', options);
+      this.inAppBrowser.create(eventUrl, '_system', options);
 
     } else if(id == 'restaurantPage') {
       this.inAppBrowser.create(restaurantUrl, '_system', options);
@@ -55,7 +54,7 @@ console.log("VenueUrl: ", this.venueView);
     }
 
   }
- goToselectedRoute(routeName:string, siteId:string, tType, icon, sType, colorHex, colorString, crowd_indicator, time){
+ goToselectedRoute(routeName:string, siteId:string, tType, icon, sType, colorHex, colorString, crowd_indicator, time, route){
     this.navCtrl.push(SelectedRoute, {
       routeName: routeName,
       siteId: siteId,
@@ -69,6 +68,7 @@ console.log("VenueUrl: ", this.venueView);
       color: colorString,
       crowdIndicator: crowd_indicator,
       time: time,
+      routeId: route,
     });
   }
 
@@ -84,7 +84,7 @@ console.log("VenueUrl: ", this.venueView);
     .subscribe(
       (data)=> {
         this.stations=data["results"];
-        console.log("SpecificVenue: ", JSON.stringify(this.stations));
+      //  console.log("SpecificVenue: ", JSON.stringify(this.stations));
       },
       (error)=> {console.log("error: ", JSON.stringify(error));}
     )
@@ -95,33 +95,35 @@ console.log("VenueUrl: ", this.venueView);
       (data)=> {
         let events = data["results"];
 
-        var count = Object.keys(events).length;
-        if(count==0){
-        console.log("<1");
-          this.eventLink="There is no event today at " + this.venueName}
-        else{
         this.eventUrl = events[0].event_url;
-          this.eventLink=events[0].name;
-          let date = new Date(events[0].start_time);
+        this.eventName = events[0].name;
 
+          let date = new Date(events[0].start_time);
           let hours: string|number = date.getHours();
           let minutes: string|number = date.getMinutes();
-          
+
           if(hours<10){hours="0"+hours;}
           if(minutes<10){minutes = minutes+"0";}
-          this.timeEl=hours+":"+minutes;
-
-
-          this.eventLink = "Today the event " + events[0].name + " will be at kl "+this.timeEl+" at "+this.venueName;
-          document.getElementById("myHeader").innerHTML = this.eventLink;
-          console.log("timeEl:", this.timeEl);
-          console.log("event: ",events[0].name);
-      }
-        console.log("EventList: ", JSON.stringify(data));
+          this.eventTime = hours+":"+minutes;
       },
       (error)=> {console.log("eventListError: ", JSON.stringify(error));}
     )
   }
+
+  calculateRouteTime(time, crowd_indicator){
+    let newTime = parseInt(time);
+    let xFactor;
+    if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1525786167/sensor-green.png' ) {
+      xFactor = 1;
+    } else if(crowd_indicator == 'https://res.cloudinary.com/pvt-group09/image/upload/v1527068926/sensor-yellow.png'){
+      xFactor = 2;
+    } else{
+      xFactor = 3;
+    }
+    let result = newTime * xFactor;
+    return result;
+  }
+
 }
 interface MyObj {
   name: string
